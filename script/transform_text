@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+require_relative "../lib/transform"
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = <<~BANNER
+    Usage: transform_text --text "Hello, world!" --prompt "translate to Japanese"
+
+    The above command will send the prompt to OpenAI's Chat GPT-4 API and return
+    something like "こんにちは、世界！" to STDOUT.
+
+    If `--text` is not provided, the script will read from STDIN, so you can pipe
+    results. That manes something like:
+
+    transform_text --text "Hello, world!" --prompt "to Japanese" | transform_text -p "to English"
+
+    Will print something like "Hello, world!" to STDOUT.
+  BANNER
+
+  opts.on("-t", "--text TEXT", "Input text") do |text|
+    options[:text] = text
+  end
+
+  opts.on("-p", "--prompt PROMPT", "Prompt text") do |prompt|
+    options[:prompt] = prompt
+  end
+end.parse!
+
+puts transform(
+  text: options[:text] || $stdin.read,
+  prompt: options[:prompt]
+)
