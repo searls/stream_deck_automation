@@ -8,6 +8,8 @@ Here's what the setup looks like:
 
 ![Blurry photo of my Stream Deck](https://github.com/searls/stream_deck_automation/assets/79303/5998080a-73ea-48d4-ad2e-53946671940c)
 
+## Actions
+
 Here's what each of the buttons above does, by column, left-to-right:
 
 * Clipboard
@@ -51,6 +53,22 @@ Here's what each of the buttons above does, by column, left-to-right:
   * `Open Blinds` opens my office blinds
   * `Close Blinds` closes my office blinds
 
+## Demos
+
+Here's an example switching between different levels of formality in Japanese:
+[translate.webm](https://github.com/searls/stream_deck_automation/assets/79303/b0b6c64c-d060-4062-92a6-59f882210287)
+
+This was the result of `Summary Paragraph` after selecting [this article](http://arstechnica.com/science/2023/07/lonely-people-see-the-world-differently-according-to-their-brains/)'s text:
+<img width="957" alt="Screenshot 2023-07-04 at 3 32 58 PM" src="https://github.com/searls/stream_deck_automation/assets/79303/518150b6-5b4d-4301-bd49-8a3394df5920">
+
+Here's a screenshot of the pop-up generated when selecting [this script](/lib/generate.rb) and
+asking for `Design` feedback:
+<img width="1304" alt="design critique in VS Code" src="https://github.com/searls/stream_deck_automation/assets/79303/792f7e04-cd9f-47af-a5ca-5ff535479a19">
+
+After selecting a build failure in slack and tapping the `Error` key:
+<img width="1140" alt="Screenshot 2023-07-04 at 2 29 54 PM" src="https://github.com/searls/stream_deck_automation/assets/79303/73aa93df-871c-4930-8dff-c3ef02a85fc3">
+
+
 ## How to do this yourself
 
 Here's how to use this as a starting point for doing something similar. Note
@@ -64,7 +82,7 @@ which are each wired to one of the 32 buttons
 2. A couple [Ruby scripts](/script) that invoke Open AI's GPT-4 model
 3. A backup of my Stream Deck profile to restore from
 
-## Importing the Macros
+### Importing the Macros
 
 Install Keyboard Maestro, then [download this
 repo](https://github.com/searls/stream_deck_automation/archive/refs/heads/main.zip)
@@ -84,12 +102,12 @@ shell (I use rbenv)
     2. Create a variable named `ENV_PWD` that's set to your home directory (e.g.
     `/Users/justin`)
 
-## Scripts
+### Scripts
 
 Running the scripts requires an [OpenAI API
 key](https://openai.com/blog/openai-api) set to the ENV var `OPEN_AI_API_KEY`.
 
-### transform_text
+#### transform_text
 
 The `transform_text` script will attempt to improve the provided text with a
 specific focus on the given prompt. The prompt is optional (it'll just
@@ -112,7 +130,7 @@ transform_text --text "Hello, world!" --prompt "to Japanese" | transform_text -p
 Will print something like "Hello, world!" to STDOUT.
 ```
 
-### generate_text
+#### generate_text
 
 The `generate_text` script will generate text for a given context (e.g. "5th
 grade essay", "Ruby code") provided a given prompt.  The prompt can come in via
