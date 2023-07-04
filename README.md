@@ -56,7 +56,8 @@ Here's what each of the buttons above does, by column, left-to-right:
 ## Demos
 
 Here's an example switching between different levels of formality in Japanese:
-[translate.webm](https://github.com/searls/stream_deck_automation/assets/79303/b0b6c64c-d060-4062-92a6-59f882210287)
+
+https://github.com/searls/stream_deck_automation/assets/79303/b0b6c64c-d060-4062-92a6-59f882210287
 
 This was the result of `Summary Paragraph` after selecting [this article](http://arstechnica.com/science/2023/07/lonely-people-see-the-world-differently-according-to-their-brains/)'s text:
 <img width="957" alt="Screenshot 2023-07-04 at 3 32 58 PM" src="https://github.com/searls/stream_deck_automation/assets/79303/518150b6-5b4d-4301-bd49-8a3394df5920">
