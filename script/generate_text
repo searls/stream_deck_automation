@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+require_relative "../lib/generate"
+
+options = {
+  mode: :replace
+}
+OptionParser.new do |opts|
+  opts.banner = <<~BANNER
+    Usage: generate_text --prompt "a method to add two numbers" --context "Ruby code (without markdown codefences)"
+
+    The above command will set the provided context and then send the prompt to
+    OpenAI's Chat GPT-4 API and return something like "def(a,b); a + b; end" to
+    STDOUT.
+
+    Options:
+
+    --prepend - Will prepend the result to the prompt instead of replacing it
+    --append - Will append the result to the prompt instead of replacing it
+
+    Example:
+
+    $ generate_text --prompt "def add(a,b); a+b; end" --context "A code comment" --prepend
+    # This function takes two inputs (a, b), adds them together, and returns the result.
+    def add(a,b); a+b; end
+  BANNER
+
+  opts.on("-c", "--context CONTEXT", "Context of what to generate") do |context|
+    options[:context] = context
+  end
+
+  opts.on("-p", "--prompt PROMPT", "Prompt text") do |prompt|
+    options[:prompt] = prompt
+  end
+
+  opts.on("--append", "Append result to prompt") do
+    options[:mode] = :append
+  end
+
+  opts.on("--prepend", "Prepend result to prompt") do
+    options[:mode] = :prepend
+  end
+end.parse!
+
+puts generate(
+  context: options[:context],
+  prompt: options[:prompt] || $stdin.read,
+  mode: options[:mode]
+)
